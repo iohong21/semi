@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>	
+	<title>this</title>
+	<link rel="stylesheet" href="css/bootstrap.css"/>
+	<style>
+		*{
+			box-sizing: border-box;
+		}
+
+		.mainMenu{
+			background-color: black;
+			overflow: auto;
+			width: 100%;
+			height: 44px;
+			border: 1px solid green;
+		}
+		.mainMenu .menuBox{
+			list-style-type: none;
+			text-align: center;
+			margin: 0;
+			/*border: 1px solid red;*/
+		}
+		.menuBox li{
+			display: inline-block;
+		}
+		.mainMenu .menuBox li a{
+			text-decoration: none;
+			display: block;
+			padding: 10px 10px;
+			color: gray;
+		}
+
+		.overlay {
+		  position: fixed;
+		  top: 0;
+		  bottom: 0;
+		  left: 0;
+		  right: 0;
+		  background: rgba(0, 0, 0, 0.7);
+		  transition: opacity 500ms;
+		  visibility: hidden;
+		  opacity: 0;
+		}
+
+		.overlay:target {
+		  visibility: visible;
+		  opacity: 1;
+		}
+
+		.popup {
+		  margin: 70px auto;
+		  padding: 20px;
+		  background: #fff;
+		  border-radius: 5px;
+		  width: 30%;
+		  position: relative;
+		  /*transition: all 5s ease-in-out;*/
+		}
+
+		.popup h2 {
+		  margin-top: 0;
+		  color: #333;
+		  font-family: Tahoma, Arial, sans-serif;
+		}
+		.popup .content {
+		  max-height: 30%;
+		  overflow: auto;
+		}
+
+		@media screen and (max-width: 700px){
+		  .box{
+		    width: 70%;
+		  }
+		  .popup{
+		    width: 70%;
+		  }
+		}
+	</style>
+</head>
+<body>
+	<div class="mainMenu">
+		<div class="mainLogo">
+			
+		</div>
+		<ul class="menuBox">
+			<li><a class="menuItem" href="#">Menu1</a></li>
+			<li><a class="menuItem" href="#">Menu2</a></li>
+			<li><a class="menuItem" href="#">Menu3</a></li>
+			<li><a class="menuItem" href="#">Menu4</a></li>
+			<li><a class="menuItem" href="#">Menu5</a></li>
+			<li><a id="mLogin" class="menuItem" href="#">Login</a></li>
+		</ul>
+	</div>
+
+	<div id="popup1" class="overlay">
+		<div class="popup">
+			<h2>로그인</h2>
+			<div class="content">
+	            <form id="myForm" action="myForm">
+					<div class="form-group">
+						<input id="id" type="text" class="form-control" placeholder="ID*" title="입력란을 작성하세요">
+					</div>
+					<div class="form-group">
+						<input id="pwd" type="password" class="form-control" placeholder="암호*" title="입력란을 작성하세요">
+					</div>	 
+					<div class="pull-right">           	
+			            <button type="reset" class="btn btn-warning">취소</button>
+		            	<button type="submit" class="btn btn-primary">확인</button>
+		            </div>
+	            </form>
+			</div>
+		</div>
+	</div>
+	<script src="js/jquery-3.3.1.js"></script>	
+	<script src="js/bootstrap.js"></script>
+	<script>
+		var isTest = true;
+		if(isTest) {
+			var isKeyinID = false, isKeyinPWD = false;
+			var keyupFunc = function($input, isVal){
+				if(!isVal) {
+					isVal = true;
+				}
+				var tmp = $input.val();
+				$input.css("background-color", tmp.length == 0 && isVal ? "#ffffc5" : "white");
+			}
+			$("#mLogin").click(function(){
+				$("#popup1").css("display", "block");
+			});
+			$("#id").on("keyup", function(){
+				keyupFunc($("#id"), isKeyinID);
+			});
+			$("#pwd").on("keyup", function(){
+				keyupFunc($("#pwd"), isKeyinPWD);
+			});				
+
+			$("#myForm").on("reset", function(e){
+				$("#popup1").css("display", "none");
+				e.preventDefault();
+			});				
+		}
+	</script>
+</body>
+</html>

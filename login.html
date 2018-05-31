@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>	
+	<title>Login page</title>
+	<link rel="stylesheet" href="css/bootstrap.css"/>
+	<style>
+		*{
+			box-sizing: border-box;
+		}
+		.mainMenu{
+			background-color: black;
+			overflow: auto;
+			width: 100%;
+			height: 44px;
+			border: 1px solid green;
+		}
+		.iconMenu{
+	      background-color: green;
+	      width: 100%;
+	      height: 44px;
+	      text-align: center;
+	    }		
+		.mainMenu .menuBox{
+			list-style-type: none;
+			text-align: center;
+			margin: 0;
+			padding: 0;
+			overflow: hidden;
+			border: 1px solid red;
+		}
+		.menuBox li{
+			display: inline;
+		}
+		.mainMenu .menuBox li a{
+			text-decoration: none;
+			display: inline-block;
+			padding: 10px 10px;
+			color: gray;
+		}
+		#loginBox{
+			display: none;
+			width: 400px;
+		}
+		#info{
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<div class="mainMenu">
+		<ul class="menuBox">
+			<li><a class="menuItem" href="#">Menu1</a></li>
+			<li><a class="menuItem" href="#">Menu2</a></li>
+			<li><a class="menuItem" href="#">Menu3</a></li>
+			<li><a class="menuItem" href="#">Menu4</a></li>
+			<li><a class="menuItem" href="#">Menu5</a></li>
+			<li><a id="mLogin" class="menuItem" href="#">Login</a></li>
+		</ul>
+	</div>
+	<div class="iconMenu">
+		
+	</div>
+	<button id="btnModal" style="visibility: hidden;" data-toggle="modal" data-target="#loginModal">모달 띄우기2</button>
+
+	<div id="loginModal" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">로그인&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-briefcase"></span></h4>
+
+				</div>
+				<div class="modal-body">
+					<div class="con">
+						<div class="row">
+							<div class="col-xs-6">	
+								<form id="myForm" action="/userLogin">
+									<input type="text" class="form-control" id="id" placeholder="ID*" autocomplete="off" title="입력란을 입력하세요">
+									<br><br>
+									<input type="password" class="form-control" id="pwd" placeholder="암호D*" title="입력란을 입력하세요">
+
+								</form>
+							</div>
+							<!-- <div class="col-xs-6" style="border-left: 1px solid red; height: 100%;">	 -->
+							<div class="col-sx-6">
+								<p id="info"></p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+		        <div class="modal-footer">
+			        <button type="button" class="btn btn-warning" data-dismiss="modal">&nbsp;취소&nbsp;</button>
+			        <button type="button" class="btn btn-primary" data-dismiss="modal">로그인</button>
+		        </div>
+			</div>
+		</div>
+	</div>
+
+	<script src="js/jquery-3.3.1.js"></script>	
+	<script src="js/bootstrap.js"></script>
+
+	<script>
+		var isTest = true;
+
+		if(isTest) {
+			var idReg1 = /^[\w]*$/;
+			var idReg2 = /^[a-zA-Z]/;
+			var idReg3 = /^.{8,}$/;
+			$("#loginModal").modal({
+				backdrop: false,
+				show: false
+			});	
+			$("#info").html("<strong>멀티 프레임 워크</strong><br/><hr/>세미 프로젝트");
+
+			$("#mLogin").click(function(){
+				$("#id, #pwd").val("");
+				$("#btnModal").trigger("click");
+
+				var isKeyin = false;
+				var keyupFunc = function($input, isVal){
+					if(!isVal) {
+						isVal = true;
+					}
+					var inputVal = $input.val();
+
+					var result1 = idReg1.test(inputVal);
+					var result2 = idReg2.test(inputVal);
+					var result3 = idReg3.test(inputVal);
+
+					$("#info").text("");
+					if(!result1) {
+						$("#info").html("<br/>특수문자는 사용할 수 없습니다.<br/>");
+					}
+					if(!result2) {
+						$("#info").html($("#info").text() + "<br/>첫문자는 영문자로 시작해야합니다.<br/>");
+					}
+					if(!result3) {
+						$("#info").html($("#info").text() + "<br/>최소8자 이상 문자,숫자를 조합해야 합니다.<br/>");
+					}
+					$input.css("background-color", inputVal.length == 0 && isVal ? "#ffffc5" : "white");
+				}
+
+				$("#id, #pwd").on("keyup", function(){
+					keyupFunc($(this), isKeyin);
+				});
+
+				$("#id").on("focus", function(){
+					$("#info").html("첫문자는 영문자로 시작해야합니다.<br/>최소8자 이상 문자,숫자를 조합해야 합니다.");
+				});
+				$("#pwd").on("focus", function(){
+					$("#info").html("비밀번호는 3달에 한번 바꾸어주세요.<br/>최소8자 이상 문자,숫자를 조합해야 합니다.");
+				});
+				$("#id, #pwd").on("blur", function(){
+					$(this).css("background-color", "white");
+					$("#info").html("<strong>멀티 프레임 워크</strong><br/><hr/>세미 프로젝트");
+				});
+				// $("#pwd").on("blur", function(){
+				// 	$(this).css("background-color", "white");
+				// 	$("#info").html("<strong>멀티 프레임 워크</strong><br/><hr/>세미 프로젝트");
+				// });
+			});
+
+			$("#myForm").on("reset", function(e){
+				$("#loginBox").css("display", "none");
+				e.preventDefault();
+			});		
+
+			$("#myForm").on("submit", function(e){
+				alert("OK");
+			});
+		}
+	</script>	
+</body>
+</html>
