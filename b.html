@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>	
+	<title>this</title>
+	<link rel="stylesheet" href="css/bootstrap.css"/>
+	<link rel="stylesheet" href="css/common.css"/>
+	<style>
+		body{
+			color: white;
+			background-image: url("images/Aion1.jpg");
+			background-size: 100%;
+			background-repeat: no-repeat;
+			width: 100%;
+			height: auto;
+		}
+		.mainRefrigerator{
+			width: 100%;
+			height: 700px;
+		}
+		.refrigerator{
+			width: 100px;
+			height: 300px;
+		}
+		.refrigerator:hover{
+			animation: refrigeratorAni 1s ease-out 1;
+		}
+		@keyframes refrigeratorAni{
+			0%, 90%{
+				box-shadow: 5px 5px 15px 5px;
+			}
+			100%{
+				opacity: 5%;
+				box-shadow: 5px 5px 15px 5px;
+			}
+		}
+		#refrigeratorTitle{
+			font-size: 40px;
+			color: white;
+			text-shadow: 5px 5px 15px 5px;
+			height: 100px;
+			margin-top: 50px;
+		}		
+	</style>
+</head>
+<body>
+	<div class="container mainRefrigerator">
+		<div class="row">
+			<div  id="refrigeratorTitle">
+				<p class="text-center"><strong>삼성냉장고</strong></p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-3 col-xs-offset-2">
+				<div class="row">
+					<img class="refrigerator" src="images/refrigerator1.png" alt="">
+				</div>
+				<div class="row" style="margin-top: 30px">
+					<p><strong>셰프컬렉션</strong></strong><br/>시대를 넘어서는 명작</p>
+				</div>
+			</div>
+			<div class="col-xs-3">
+				<div class="row">
+					<img class="refrigerator" src="images/refrigerator2.png" alt="">
+				</div>
+				<div class="row" style="margin-top: 30px">
+					<p><strong>T9000</strong><br/>트리플독립냉각</p>
+				</div>
+			</div>
+			<div class="col-xs-3">
+				<div class="row">
+					<img class="refrigerator" src="images/refrigerator3.png" alt="">
+				</div>
+				<div class="row" style="margin-top: 30px">
+					<p><strong>H9000</strong><br/>수납이 편리한 5도어</p>
+				</div>
+			</div>
+		</div>
+	</div>	
+	<script src="js/jquery-3.3.1.js"></script>	
+	<script src="js/bootstrap.js"></script>
+</body>
+</html>

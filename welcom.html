@@ -3,68 +3,8 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Step05_Animation.html</title>
-	<style>
-		*{
-			box-sizing: border-box;
-		}
-		body{
-			margin: 0;
-			padding: 0;
-			background-color: #000;
-		}
-		.welcome{
-			margin-top: 50px;
-			width: 100%;
-			color: white;
-			font-size: 50px;
-			text-shadow: gray 2px 2px;
-			text-align: center;
-		}	
-		.samsung{
-			color: white;
-			font-size: 70px;
-			text-shadow: gray 2px 2px;
-			text-align: center;
-		}	
-		.circleBox{
-			width: 100%;
-			text-align: center;
-			/*border: 1px solid red;*/
-		}
-		#circle1, #circle2, #circle3{
-			display: inline-block;
-			text-align: center;
-			width: 10px;
-			height: 10px;
-			margin: 0 2px;
-			background-color: #fff;
-			border: 1px solid black;
-			border-radius: 50px;
-		}
-
-		.growDownCircle{
-			animation-name: growAni;
-			animation-duration: 0.2s;
-			animation-iteration-count: 2;
-			animation-direction: alternate;
-		}
-		.growCircle{
-			animation-name: growAni;
-			animation-duration: 0.5s;
-			animation-iteration-count: 1;
-			animation-direction: alternate;
-		}
-		@keyframes growAni{
-			from{
-				background-color: #fff;
-				transform: scale(1.0);
-			}
-			to{
-				background-color: #fff;
-				transform: scale(2.0);
-			}
-		}
-	</style>
+	<link rel="stylesheet" href="css/common.css"/>
+	<link rel="stylesheet" href="css/welcome.css"/>
 </head>
 <body>
 	<div class="container">
@@ -79,32 +19,6 @@
 	<a id="login" href="login.html" style="visibility: hidden;"></a>
 	<script src="js/jquery-3.3.1.js"></script>	
 	<script src="js/bootstrap.js"></script>
-
-	<script>
-		setTimeout(function(){
-			$("#circle1")
-			.addClass("growDownCircle")
-			.one("animationend", function(){
-				$(this).removeClass("growDownCircle");
-			});
-		}, 0.1);
-		setTimeout(function(){
-			$("#circle2")
-			.addClass("growCircle")
-			.one("animationend", function(){
-				$(this)
-				.removeClass("growCircle");
-			});
-		}, 70);
-		setTimeout(function(){
-			$("#circle3")
-			.addClass("growDownCircle")
-			.one("animationend", function(){
-				$(this)
-				.removeClass("growDownCircle");
-				location.href = "login.html";
-			});
-		}, 90);
-	</script>
+	<script src="js/welcome.js"></script>
 </body>
 </html>
