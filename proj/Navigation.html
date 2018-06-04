@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Navigation</title>
+  <link rel="stylesheet" href="css/bootstrap.css">
+</head>
+<style>
+  .nav{
+    background-color: #000;
+    overflow: auto;
+    width: 100%;
+
+  }
+  .nav ul{
+    list-style-type: none;
+    /*padding: 0;*/
+    text-align: center;
+    margin: 0 auto;
+  }
+  ul li{
+    /*float:left;*/
+    display: inline-block;
+    margin: 0 auto;
+
+  }
+  .nav a{
+    text-decoration: none;
+    color:#fff;
+    display: block;
+    padding: 10px 20px;
+    margin-right: 25px;
+  }
+  .nav a:hover, .nav a:focus{
+    color:#999;
+    text-decoration: none;
+  }
+
+  #logo{
+    width:150px;
+  }
+  @media(max-width: 767px){
+      #md{
+        display: block;
+      }
+    }
+   #iconMenu{
+     background-color: green;
+     width: 100%;
+     height: 44px;
+     text-align: center;
+    }
+  #contents{
+      min-height: 200px;
+      background: #D9E5FF;
+    }
+</style>
+<body>
+
+<!-- navbar -->
+  <div class="nav" id="md" >
+    <!-- <nav class="container-fluid"> -->
+      <ul id="menu">
+        <li>
+          <span class="smLg">
+            <a href="#">
+              <img id="logo" src="images/samsung.png" alt="">
+            </a>
+          <span>
+        </li>
+        <li><a href="#">menu1</a></li>
+        <li><a href="#">menu2</a></li>
+        <li><a href="#">menu3</a></li>
+        <li><a href="#">menu4</a></li>
+        <li><a href="#">menu5</a></li>
+        <li class="mgts"><a href="#"><span class="sr-only">검색</span><i class="glyphicon glyphicon-search"></i></a></li>
+        <li class="mgts"><a href="#"><span class="sr-only">장바구니</span><i class="glyphicon glyphicon-shopping-cart"></i></a></li>
+      </ul>
+    <!-- </nav> -->
+    
+
+  </div>
+  <div id="iconMenu">ICON Menu</div>
+  <div id="contents">본문</div>
+  
+
+  <script src="js/jquery-3.3.1.js"></script>
+    <script src="js/bootstrap.js"></script>
+
+  <script>
+    $("#menu li").click(function(){
+        var txt = $(this).text();
+        $("#contents").text(txt);
+
+      });
+  </script>
+
+</body>
+</html>

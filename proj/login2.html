@@ -1,0 +1,153 @@
+
+<!DOCTYPE html>
+<head>
+  <title>responsive dropdown menu</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <style>
+    *{
+      box-sizing: border-box;
+    }
+    /* Android 버그 교정 */
+    body {
+      margin: 0;
+      padding: 0;
+      -webkit-animation: bugfix infinite 1s;
+    }
+    @-webkit-keyframes bugfix {
+      from { padding: 0; }
+      to { padding: 0; }
+    }
+
+    #mainMenu{
+      background-color: #000;
+      color: white;
+      width: 100%;
+      height: 44px;
+      overflow: hidden;
+    }
+    #iconMenu{
+      background-color: green;
+      width: 100%;
+      height: 44px;
+      text-align: center;
+
+    }
+    #menuItem{
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      text-align: center;
+    }
+    #menuItem li{
+      display: inline;
+    }
+    #menuItem li a {
+      display: inline-block;
+      text-decoration: none;
+      padding: 10px 20px;
+      color: gray;
+    }
+    #menuItem li:first-child > a{
+      color: white;
+    }
+    #mainMenu label, #toggle{
+      display: none;
+      cursor: pointer;
+    }
+    #contents{
+      min-height: 200px;
+      background: #D9E5FF;
+    }
+
+    @media screen and (max-width: 480px){
+      #mainMenu{
+        height: auto;
+      }
+      #menuItem{
+        display: none;
+      }
+      #toggle:checked + #menuBox>#menuItem{
+        display:block;
+      }
+      #menuItem li{
+        display:block;
+        width:100%;
+        text-align:center;
+        border-top:1px solid #ccc;
+        padding: 4px;
+      }
+      #mainMenu label {
+        display:block;
+        text-align:center;
+        background: url('images/menu_white.png');
+        background-repeat: no-repeat;
+        background-position:97% 10px;
+        background-size: 20px 20px;
+        font-size:15px;
+        font-weight:bold;
+        padding:8px 3%;
+
+
+      }
+    }
+    .mgts{
+      float:right;
+    }
+    .mgts2{
+      
+    }
+    .mgtx3{
+      position: relative;
+      right:500px;
+    }
+  </style>
+  </head>
+  <body>
+    <div id="mainMenu">
+      <label for="toggle" onclick>
+        <img class="mgex3" src="images/samsung.png" style="width:100px;/* height: 20px */top: 0;" alt="">
+      </label>
+      <input class="mgts2" type="checkbox" id="toggle"/>
+      <div id="menuBox">
+        <ul id="menuItem">
+          <li>
+              <a href="">
+                <img src="images/samsung.png" style="width:100px;/* height: 20px */top: 0;" alt="">
+              </a>
+            </li>
+          <li><a href="#">TV</a></li>
+          <li><a href="#">Computer</a></li>
+          <li><a href="#">USB</a></li>
+          <li><a href="#">Memory</a></li>
+          <li><a href="#">음향기기</a></li>
+          <li class="mgts"><a href="#"><span class="sr-only">검색</span><i class="glyphicon glyphicon-search"></i></a></li>
+          <li class="mgts"><a href="#"><span class="sr-only">장바구니</span><i class="glyphicon glyphicon-shopping-cart"></i></a></li>
+        </ul>
+        
+      </div>
+    </div>
+    <div id="iconMenu">ICON Menu</div>
+    <div id="contents">본문</div>
+
+    <script src="js/jquery-3.3.1.js"></script>
+  	<script src="js/bootstrap.js"></script>
+
+    <script>
+
+       $("#menuItem").clack(function){
+        $("#gmex3").hide();
+      }
+
+      $("#menuItem li a").click(function(){
+        $("#menuItem li a").css("color", "gray");
+        var txt = $(this).text();
+        $("#contents").text(txt);
+        $(this).css("color", "white");
+      });
+
+    </script>
+  </body>
+</html>
